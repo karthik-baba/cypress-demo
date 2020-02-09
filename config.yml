@@ -1,0 +1,20 @@
+# JavaScript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  # give any name to job
+  4x-electron:
+    # use Cypress built Docker image with Node 10 and npm 6
+    docker:
+      - image: cypress/base:10
+    # tells CircleCI to execute this job on 4 machines simultaneously
+    parallelism: 2
+    steps:
+      - checkout
+      # note: omitting caching for brevity
+      # quickly install NPM dependencies
+      - npm ci
+      # load balance all tests across 4 CI machines
+      - $(npm bin)/cypress run --parallel

@@ -16,7 +16,7 @@ describe('Login Test1', function() {
     })
   })
 
-  describe.only('Login Test2', function() {
+  describe('Login Test2', function() {
     it('Verify Account Number of the test account', function() {
       cy.visit('https://www.spectrum.net')
       cy.get('#cc-username').type('TamABHTX')
